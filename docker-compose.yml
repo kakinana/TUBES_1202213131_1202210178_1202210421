@@ -1,0 +1,79 @@
+version: "3.8"
+
+services:
+  aset:
+    container_name: aset
+    image: aset:latest
+    ports:
+      - 5003:5003
+    networks:
+      - pamungkas
+  dokter:
+    container_name: dokter
+    image: dokter:latest
+    ports:
+      - 5007:5007
+    networks:
+      - pamungkas
+  karyawan:
+    container_name: karyawan
+    image: karyawan:latest
+    ports:
+      - 5002:5002
+    networks:
+      - pamungkas
+  medrec:
+    container_name: medrec
+    image: medrec:latest
+    ports:
+      - 5006:5006
+    networks:
+      - pamungkas
+  obat:
+    container_name: obat
+    image: obat:latest
+    ports:
+      - 5004:5004
+    networks:
+      - pamungkas
+  partner:
+    container_name: partner
+    image: partner:latest
+    ports:
+      - 5100:5100
+    networks:
+      - pamungkas
+  pasien:
+    container_name: pasien
+    image: pasien:latest
+    ports:
+      - 5005:5005
+    networks:
+      - pamungkas
+  poli:
+    container_name: poli
+    image: poliklinik:latest
+    ports:
+      - 5001:5001
+    networks:
+      - pamungkas
+  main:
+    container_name: main
+    image: main:latest
+    ports:
+      - 5000:5000
+    depends_on:
+      - aset
+      - dokter
+      - karyawan
+      - medrec
+      - obat
+      - partner
+      - pasien
+      - poli
+    networks:
+      - pamungkas
+
+networks:
+  pamungkas:
+    name: pamungkas
